@@ -42,3 +42,145 @@ h6 {
   isolation: isolate;
 }
 /* ---------------------------------------------- */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+header {
+  height: 4rem;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  align-items: center;
+  padding: 0px 8px;
+  border-bottom: 1px solid black;
+}
+
+#header-title {
+  font-size: 2.75rem;
+  flex-grow: 1;
+}
+
+#header-author {
+  align-self: flex-end;
+  font-size: 1.75rem;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.main-header {
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+.new-book-btn {
+  background-color: white;
+  border: 2px solid blue;
+  border-radius: 7px;
+
+  color: blue;
+  font-weight: 700;
+  font-size: 1.125rem;
+  font-family: inherit;
+  padding: 2px 16px;
+}
+
+.new-book-btn:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.add-book-dialog {
+  width: 80%;
+  margin: auto;
+  padding: 8px;
+
+  p {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 8px;
+  }
+}
+
+.form-input-box {
+  display: flex;
+  margin-bottom: 8px;
+  /* border: 1px solid red; */
+  align-items: center;
+  gap: 16px;
+  font-size: 1.5rem;
+
+  label {
+    width: 300px;
+  }
+
+  input {
+    background-color: white;
+    /* border: 2px solid blue; */
+    border-radius: 4px;
+    flex: 1;
+  }
+
+  div {
+    flex: 1;
+    height: 36px;
+    margin-bottom: 16px;
+  }
+
+  div > select {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 200px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 4px;
+
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #ddd;
+  }
+}
+
+.add-book-dialog::backdrop {
+  background-color: black;
+  opacity: 0.3;
+}
+
+footer {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid black;
+}
+
+#author-link {
+  color: green;
+  font-weight: 600;
+}
