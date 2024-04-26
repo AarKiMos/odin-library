@@ -38,6 +38,26 @@ bookForm.addEventListener("submit", (event) => {
   console.log(data);
   addBookToLibrary(data);
 
-  // refreshBookDOM();
+  refreshBookDOM();
   bookForm.reset();
 });
+
+function refreshBookDOM() {
+  const tableBody = document.querySelector("#book-table-body");
+  tableBody.innerHTML = "";
+
+  let idx = 1;
+  myLibrary.forEach((book) => {
+    const newRow = document.createElement("tr");
+    newRow.setAttribute("id", `b${idx}`);
+    newRow.innerHTML = `
+    <td>${idx++}</td>
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td><input type="checkbox" ${book.isRead ? "checked" : ""}/></td>
+    <td><button>DELETE</button></td>
+  `;
+
+    tableBody.appendChild(newRow);
+  });
+}
