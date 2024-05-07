@@ -1,23 +1,4 @@
-const myLibrary = [
-  {
-    title: "book title 1",
-    author: "book author 1",
-    pageCount: "56",
-    isRead: true,
-  },
-  {
-    title: "book title 2",
-    author: "book author 2",
-    pageCount: "567",
-    isRead: false,
-  },
-  {
-    title: "book title 3",
-    author: "book author 1",
-    pageCount: "58",
-    isRead: true,
-  },
-];
+const myLibrary = [];
 
 function Book(title, author, pageCount, isRead) {
   this.title = title;
@@ -31,6 +12,11 @@ function Book(title, author, pageCount, isRead) {
     }.`;
   };
 }
+
+Book.prototype.toggleReadStatus = function () {
+  console.log("toggle funciton");
+  this.isRead = !this.isRead;
+};
 
 function addBookToLibrary({ title, author, pageCount, isRead }) {
   const newBook = new Book(title, author, pageCount, Boolean(+isRead));
@@ -88,8 +74,8 @@ function refreshBookDOM() {
     readCheckbox.addEventListener("change", (event) => {
       const bid = event.target.dataset.bid;
       console.log(typeof bid);
-      myLibrary[+bid].isRead = !myLibrary[+bid].isRead;
-      // console.table(myLibrary)
+      myLibrary[+bid].toggleReadStatus();
+      // console.table(myLibrary);
     });
 
     const deleteBtn = bookNode.querySelector("button");
@@ -101,5 +87,28 @@ function refreshBookDOM() {
     });
   });
 }
+
+const initialObjects = [
+  {
+    title: "book title 1",
+    author: "book author 1",
+    pageCount: "56",
+    isRead: "1",
+  },
+  {
+    title: "book title 2",
+    author: "book author 2",
+    pageCount: "567",
+    isRead: "0",
+  },
+  {
+    title: "book title 3",
+    author: "book author 1",
+    pageCount: "58",
+    isRead: "1",
+  },
+];
+
+initialObjects.forEach((obj) => addBookToLibrary(obj));
 
 refreshBookDOM();
