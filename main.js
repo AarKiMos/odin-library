@@ -1,4 +1,23 @@
-const myLibrary = [];
+const myLibrary = [
+  {
+    title: "book title 1",
+    author: "book author 1",
+    pageCount: "56",
+    isRead: true,
+  },
+  {
+    title: "book title 2",
+    author: "book author 2",
+    pageCount: "567",
+    isRead: false,
+  },
+  {
+    title: "book title 3",
+    author: "book author 1",
+    pageCount: "58",
+    isRead: true,
+  },
+];
 
 function Book(title, author, pageCount, isRead) {
   this.title = title;
@@ -51,13 +70,31 @@ function refreshBookDOM() {
     const newRow = document.createElement("tr");
     newRow.setAttribute("id", `b${idx}`);
     newRow.innerHTML = `
-    <td>${idx++}</td>
+    <td>${idx}</td>
     <td>${book.title}</td>
     <td>${book.author}</td>
-    <td><input type="checkbox" ${book.isRead ? "checked" : ""}/></td>
+    <td>${book.pageCount}</td>
+    <td><input type="checkbox" ${
+      book.isRead ? "checked" : ""
+    } class="is-read-cb" data-bid="${idx - 1}" /></td>
     <td><button>DELETE</button></td>
   `;
 
-    tableBody.appendChild(newRow);
+    idx++;
+
+    const bookNode = tableBody.appendChild(newRow);
+    const readCheckbox = bookNode.querySelector(".is-read-cb");
+
+    readCheckbox.addEventListener("change", (event) => {
+      const bid = event.target.dataset.bid;
+      myLibrary[bid].isRead = !myLibrary[bid].isRead;
+      // console.table(myLibrary)
+    });
   });
 }
+
+function handleReadToggle(e) {
+  console.log(e);
+}
+
+refreshBookDOM();
