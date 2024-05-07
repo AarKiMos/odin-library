@@ -77,7 +77,7 @@ function refreshBookDOM() {
     <td><input type="checkbox" ${
       book.isRead ? "checked" : ""
     } class="is-read-cb" data-bid="${idx - 1}" /></td>
-    <td><button>DELETE</button></td>
+    <td><button data-bid="${idx - 1}">DELETE</button></td>
   `;
 
     idx++;
@@ -87,14 +87,19 @@ function refreshBookDOM() {
 
     readCheckbox.addEventListener("change", (event) => {
       const bid = event.target.dataset.bid;
-      myLibrary[bid].isRead = !myLibrary[bid].isRead;
+      console.log(typeof bid);
+      myLibrary[+bid].isRead = !myLibrary[+bid].isRead;
       // console.table(myLibrary)
     });
-  });
-}
 
-function handleReadToggle(e) {
-  console.log(e);
+    const deleteBtn = bookNode.querySelector("button");
+    deleteBtn.addEventListener("click", (event) => {
+      const bid = event.target.dataset.bid;
+      myLibrary.splice(+bid, 1);
+
+      refreshBookDOM();
+    });
+  });
 }
 
 refreshBookDOM();
